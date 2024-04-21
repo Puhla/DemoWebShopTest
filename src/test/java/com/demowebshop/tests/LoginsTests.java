@@ -1,5 +1,6 @@
 package com.demowebshop.tests;
 
+import com.demoWebShop.data.UserData;
 import com.demoWebShop.models.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -8,25 +9,27 @@ import org.testng.annotations.Test;
 public class LoginsTests extends TestBase {
 @BeforeMethod
 public void ensurePrecondition(){
-	if(!app.getUser ().isLoginLinkPresent ()){
-		app.getContact ().clickOnRegisterButton ();
+	if (!app.getUser().isLoginLinkPresent()){
+		app.getUser().clickOnLogOutButton();
 	}
 }
 
-@Test//(enabled = false)
-public void loginPositiveTest () {
-	app.getUser ().clickOnLoginLink ();
-	app.getUser ().fillLoginForm (new User ().setEmail ("shlyapa@gmail.com").setPassword ("$Roma!$1"));
-	app.getUser ().clickOnLoginInButton ();
-	Assert.assertTrue (app.getUser ().isHeaderLinksPresent ());
+@Test
+public void loginPositiveTest(){
+	app.getUser().clickOnLoginLink();
+	
+	app.getUser().fillLoginAndPassword(new User()
+			.setEmail(UserData.EMAIL)
+			.setPassword(UserData.PASSWORD));
+	app.getUser().clickOnLogInButton();
+	Assert.assertTrue(app.getUser().isCustomerPresent());
 }
-
-@Test(enabled = false)
-public void loginNegativeTest() {
-	app.getUser ().clickOnLoginLink ();
-	app.getUser ().fillLoginForm (new User().setEmail("invalid_email@gmail.com").setPassword("invalid_password"));
-	app.getUser ().clickOnLoginInButton ();
-	Assert.assertTrue(app.getUser ().isValidationSummaryErrorsPresent ());
+@Test
+public void loginNegativeTest(){
+	app.getUser().clickOnLoginLink();
+	app.getUser().fillLoginAndPassword(new User().setPassword("Olesia$2024"));
+	app.getUser().clickOnLogInButton();
+	Assert.assertTrue(app.getUser().isCustomerPresent());
+	
 }
-
 }

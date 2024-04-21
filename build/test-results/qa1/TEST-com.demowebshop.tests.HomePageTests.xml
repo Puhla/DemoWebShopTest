@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.demowebshop.tests.HomePageTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-04-15T19:42:35" hostname="MacBook-Air-Irena.local" time="0.018">
+  <properties/>
+  <testcase name="isHomeComponentPresentTest" classname="com.demowebshop.tests.HomePageTests" time="0.018"/>
+  <system-out><![CDATA[21:42:35.110 [Test worker] INFO com.demowebshop.tests.TestBase -- Start test isHomeComponentPresentTestwith data: []
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

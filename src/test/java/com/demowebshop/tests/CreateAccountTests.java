@@ -1,61 +1,40 @@
 package com.demowebshop.tests;
 
-import com.demoWebShop.models.Contact;
-import org.openqa.selenium.By;
+import com.demoWebShop.data.UserData;
+import com.demoWebShop.models.User;
+import com.demoWebShop.utils.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Random;
-
 public class CreateAccountTests extends TestBase{
-//@BeforeMethod
-//public void ensurePrecondition(){
-//	if(!app.getUser().isLoginLinkPresent ()){
-//		app.getContact ().clickOnRegisterLink ();
-//	}
-//}
-
-@Test//(enabled = false)
-public void createNewAccountPositiveTest () {
-	Random random= new Random ();
-	int i = random.nextInt (1000)+1000;
-	app.getContact ().clickOnRegisterLink ();
-	app.getContact ().fillRegisterForm (new Contact ()
-			.setFirstname ("HBh")
-			.setLastname ("Chebova")
-			.setEmail ("fgha1"+i+"@gmail.com")
-			.setPassword ("$Roma!$1")
-			.setConfirmPassword ("$Roma!$1"));
-	app.getContact ().clickOnRegisterButton ();
-	Assert.assertTrue(app.getContact().isAccountCreated ());
-	
+@BeforeMethod
+public void ensurePrecondition() {
+	if (!app.getUser().isLoginLinkPresent()) {
+		app.getUser().clickOnLogOutButton();
+	}
 }
 
-@Test(enabled = false)
-public void createNewAccountWithExitedEmailNegativeTest () {
-	app.getContact ().clickOnRegisterLink ();
-	app.getContact ().fillRegisterForm (new Contact()
-			.setFirstname ("Gena")
-			.setLastname ("Cheburashkov")
-			.setEmail ("")
-			.setPassword ("$Roma!$1")
-			.setConfirmPassword ("$Roma!$1"));
-	app.getContact ().clickOnRegisterButton ();
-	Assert.assertTrue(app.getContact ().isPageTitlePresent ());
-	
+@Test
+public void createNewAccount() {
+	app.getUser().clickOnRegisterLink();
+	app.getUser().fillRegisterForm(new User()
+			.setFirstName(UserData.FIRSTNAME)
+			.setLastName(UserData.SURNAME)
+			.setEmail(UserData.CREATE_EMAIL)
+			.setPassword(UserData.PASSWORD)
+			.setConfirmPassword(UserData.CONFIRMPASSWORD));
+	app.getUser().clickOnRegistrationButton();
+	Assert.assertTrue(app.getUser().isCustomerPresent());
+}
+
+@Test(dataProvider = "createNewUsersFromCsvFile", dataProviderClass = DataProviders.class)
+public void testAddUsersFromCsvFile(User newUser) {
+	app.getUser().clickOnRegisterLink();
+	app.getUser().fillRegisterForm(newUser);
+	app.getUser().clickOnRegistrationButton();
+	Assert.assertTrue(app.getUser().isCustomerPresent());
 }
 
 }
-
-	
-
-	
-	
-	
-
-
-
-
-
 
