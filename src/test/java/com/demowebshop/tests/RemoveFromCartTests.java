@@ -14,8 +14,8 @@ public void ensurePrecondition(){
 	}
 	app.getUser().clickOnLoginLink();
 	app.getUser().fillLoginAndPassword(new User ()
-			.setEmail("olesia123@yahoo.com")
-			.setPassword("Olesia$2024"));
+			.setEmail("shmidt@gmail.com")
+			.setPassword("64$Shmidt!!"));
 	app.getUser().clickOnLogInButton();
 	app.getItem().clickOnButtonAddToCart();
 	app.getItem().clickOnButtonShopingCart();

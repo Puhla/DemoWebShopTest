@@ -27,7 +27,7 @@ public void loginPositiveTest(){
 @Test
 public void loginNegativeTest(){
 	app.getUser().clickOnLoginLink();
-	app.getUser().fillLoginAndPassword(new User().setPassword("Olesia$2024"));
+	app.getUser().fillLoginAndPassword(new User().setPassword("64$Shmidt!!"));
 	app.getUser().clickOnLogInButton();
 	Assert.assertTrue(app.getUser().isCustomerPresent());
 	
